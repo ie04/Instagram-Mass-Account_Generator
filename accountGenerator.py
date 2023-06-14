@@ -7,6 +7,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from http_request_randomizer.requests.proxy.requestProxy import RequestProxy
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
 import time
 from time import sleep
 import random
@@ -59,7 +60,7 @@ while accNo > i:
     sleep(3)
     
     try:
-        email_in = browser.find_element_by_name("emailOrPhone")
+        email_in = browser.find_element(By.NAME, "emailOrPhone")
     except NoSuchElementException:
         continue
     
@@ -68,21 +69,21 @@ while accNo > i:
 
     print("\n \n Your randomize Email:" + email + "\n \n")
 
-    full_name_in = browser.find_element_by_name("fullName")
+    full_name_in = browser.find_element(By.NAME, "fullName")
     full_name_in.send_keys(full_name)
     sleep(5)
     print("\n \n Your randomize Full Name is: " + full_name + "\n \n")
-    username_in = browser.find_element_by_name("username")
+    username_in = browser.find_element(By.NAME, "username")
     username_in.send_keys(username)
     print("\n \n Your randomize Username is: " + username + "\n \n")
     sleep(4)
 
-    password_in = browser.find_element_by_name("password")
+    password_in = browser.find_element(By.NAME, "password")
     password_in.send_keys(password)
     print("\n \n Password Entred \n \n")
     sleep(2)
 
-    sign_up = browser.find_element_by_xpath('//*[@id="react-root"]/section/main/div/article/div/div[1]/div/form/div[7]/div/button')
+    sign_up = browser.find_element(By.XPATH, '//*[@id="react-root"]/section/main/div/article/div/div[1]/div/form/div[7]/div/button')
     sign_up.click()
     sleep(5)
 
@@ -90,9 +91,9 @@ while accNo > i:
     month_index = (random.randint(1, 12))
     day_index = (random.randint(1, 27))
 
-    year_in =  Select(browser.find_element_by_xpath('//*[@title="Year:"]'))
-    month_in =  Select(browser.find_element_by_xpath('//*[@title="Month:"]'))
-    day_in =  Select(browser.find_element_by_xpath('//*[@title="Day:"]'))
+    year_in =  Select(browser.find_element(By.XPATH, '//*[@title="Year:"]'))
+    month_in =  Select(browser.find_element(By.XPATH, '//*[@title="Month:"]'))
+    day_in =  Select(browser.find_element(By.XPATH, '//*[@title="Day:"]'))
     year_in.select_by_index(year_index)
     print("\n Years Entred \n")
     sleep(1)
@@ -103,10 +104,10 @@ while accNo > i:
     print("\n Date Entred \n")
     sleep(5)
     try:
-        next1 = browser.find_element_by_xpath('//*[@id="react-root"]/section/main/div/article/div/div[1]/div/form/div[7]/div/button')
+        next1 = browser.find_element(By.XPATH, '//*[@id="react-root"]/section/main/div/article/div/div[1]/div/form/div[7]/div/button')
         next1.click()
     except NoSuchElementException:
-        next1 = browser.find_element_by_xpath('//*[@id="react-root"]/section/main/div/article/div/div[1]/div/div[5]/div[2]/button') 
+        next1 = browser.find_element(By.XPATH, '//*[@id="react-root"]/section/main/div/article/div/div[1]/div/div[5]/div[2]/button') 
         next1.click()
     sleep(10)
     with open('username.txt', 'w') as f_output:
